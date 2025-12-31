@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CAMERA CONFIGURATION</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav  class="navbar">
+  <div class="logo">📷 CAMERA SYSTEM CONTROL</div>
+  <ul>
+    <li><a href="/">HOME</a></li>
+    <li class="active">CONFIGURATION</li>
+    <li><a href="records.html">RECORDS</a></li>
+  </ul>
+</nav>
+
+<div class="page">
+
+  <h1>CAMERA CONFIGURATION</h1>
+  <div class="config-card">
+    <form id="configForm">
+
+      <div class="form-group">
+        <label>Video Format</label>
+        <select id="formatSelect"></select>
+      </div>
+
+      <div class="form-group">
+        <label>Resolution</label>
+        <select id="resolutionSelect"></select>
+      </div>
+
+      <div class="form-group">
+        <label>Frame Rate (FPS)</label>
+        <select id="fpsSelect"></select>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="primary">SUBMIT</button>
+      </div>
+
+      <div id="configStatus" class="status-text"></div>
+
+    </form>
+
+  </div>
+
+</div>
+
+<script src="js/config.js"></script>
+</body>
+</html>

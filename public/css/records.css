@@ -1,0 +1,126 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #f4f6f8;
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 30px;
+  background: #1e272e;
+  color: #fff;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar a, .navbar li {
+  color: white;
+  text-decoration: none;
+}
+
+.navbar .active {
+  border-bottom: 2px solid #00cec9;
+}
+
+/* CONTAINER */
+.container {
+  padding: 25px;
+}
+
+/* PATH BAR */
+.path-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+/* LIST BOX */
+.list-box {
+  background: #fff;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+}
+
+/* TABLE ROWS */
+.header, .row {
+  display: grid;
+  padding: 14px;
+  border-bottom: 1px solid #ddd;
+  align-items: center;
+}
+
+.folder .header, .folder .row {
+  grid-template-columns: 3fr 1fr 1fr 2fr;
+}
+
+.video .header, .video .row {
+  grid-template-columns: 0.5fr 3fr 1fr 1fr 1fr 2fr 2fr;
+}
+
+.header {
+  background: #ecf0f1;
+  font-weight: bold;
+}
+
+.row:hover {
+  background: #f1f2f6;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+/* BUTTONS */
+button {
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* THIS is critical */
+.modal.hidden {
+  display: none !important;
+}
+
+.modal-content {
+  background: #000;
+  padding: 10px;
+  width: 70%;
+  border-radius: 8px;
+}
+
+video {
+  width: 100%;
+  max-height: 70vh;
+}
+
+.close-btn {
+  margin-top: 10px;
+  width: 100%;
+  padding: 8px;
+}

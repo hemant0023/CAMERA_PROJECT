@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Recordings</title>
+  <link rel="stylesheet" href="css/records.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="logo">📷 CAMERA SYSTEM CONTROL</div>
+  <ul>
+    <li><a href="/">HOME</a></li>
+    <li><a href="/config.html">CONFIGURATION</a></li>
+    <li class="active">RECORDS</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+
+  <!-- Path + Back -->
+  <div class="path-bar">
+    <button id="backBtn" class="hidden">⬅ Back</button>
+    <span id="pathLabel">/videos</span>
+  </div>
+
+  <!-- Folder List -->
+  <div id="folderView" class="list-box"></div>
+
+  <!-- Video List -->
+  <div id="videoView" class="list-box hidden"></div>
+
+</div>
+
+<!-- Video Modal -->
+<div id="videoModal" class="modal hidden">
+  <div class="modal-content">
+    <video id="videoPlayer" controls></video>
+    <button class="close-btn" onclick="closePlayer()">Close</button>
+  </div>
+</div>
+
+
+
+<script src="js/records.js"></script>
+</body>
+</html>
+

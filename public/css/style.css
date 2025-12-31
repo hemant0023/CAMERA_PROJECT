@@ -1,0 +1,304 @@
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: #f4f6f8;
+  color: #333;
+}
+
+
+
+
+
+
+/* PAGE */
+.page {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+h1 {
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  color: #666;
+  margin-bottom: 25px;
+}
+
+/* CARD */
+.config-card {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+/* FORM */
+.form-group {
+  margin-bottom: 22px;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+select {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+}
+
+/* ACTIONS */
+.form-actions {
+  margin-top: 30px;
+  text-align: right;
+}
+
+button.primary {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 12px 22px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button.primary:hover {
+  background: #1d4ed8;
+}
+
+/* STATUS */
+.status-text {
+  margin-top: 20px;
+  font-weight: 600;
+}
+
+.status-text.success {
+  color: #16a34a;
+}
+
+.status-text.error {
+  color: #dc2626;
+}
+
+
+/* ===== NAVBAR ===== */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #020617;
+  color: white;
+  padding: 12px 24px;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+}
+
+.navbar a {
+  color: #94a3b8;
+  text-decoration: none;
+}
+
+.navbar li {
+  color: #cbd5e1;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.navbar .active {
+  color: #38bdf8;
+  font-weight: bold;
+}
+
+
+/* ===== LAYOUT ===== */
+.live-layout {
+  max-width: 1100px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+
+/* ===== VIDEO PANEL ===== */
+/* .video-panel {
+  width: 100%;
+  height: 520px;
+   max-width: 900px;
+  margin: auto;
+  background: black;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  border: 3px solid #0ea5e9;
+} */
+.video-panel {
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+  background: black;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  border: 3px solid #0ea5e9;
+
+  /* 🔑 KEY FIX */
+  aspect-ratio: 16 / 9;
+}
+
+.video-panel video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* ===== INFO BAR ===== */
+.info-bar {
+  margin-top: 12px;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  background: #020617;
+  color: white;
+  border-radius: 8px;
+  font-size: 18px;
+}
+
+.pipe {
+  opacity: 0.6;
+}
+
+/* ===== STATUS BADGES ===== */
+.badge {
+  padding: 4px 14px;
+  border-radius: 999px;
+  font-weight: bold;
+}
+
+.badge.idle {
+  background: #64748b;
+}
+
+.badge.recording {
+  background: #16a34a;
+}
+
+.badge.paused {
+  background: #f59e0b;
+}
+
+/* ===== FILENAME INPUT ===== */
+.filename-box {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.filename-box label {
+  font-weight: 600;
+}
+
+.filename-box input {
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #cbd5f5;
+  outline: none;
+}
+
+/* ===== CONTROLS ===== */
+.controls {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.controls button {
+  padding: 12px 28px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.controls button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.primary {
+  background: #22c55e;
+  color: white;
+}
+
+.danger {
+  background: #ef4444;
+  color: white;
+}
+.folder-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.folder-card {
+  padding: 20px;
+  border: 2px solid #2c3e50;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #ecf0f1;
+  font-size: 18px;
+}
+
+.folder-card:hover {
+  background: #dfe6e9;
+}
+
+.video-table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.video-table th, .video-table td {
+  padding: 12px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+#backBtn {
+  padding: 6px 14px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+#pathLabel {
+  font-weight: bold;
+  color: #2c3e50;
+}
