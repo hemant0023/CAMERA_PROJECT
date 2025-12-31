@@ -385,13 +385,38 @@ function getTeeTargets() {
 
 let ffmpegStopping = false;
 
+
+let lastStopTs = 0;
+
+const MIN_STOP_INTERVAL_MS = 1500;   // ⏱ no double stop spam
+const DEVICE_RELEASE_DELAY_MS = 1200;
+
 async function stopFFmpeg(reason = "UNKNOWN") {
 
-    if (!ffmpegProcess || ffmpegStopping) {
-    console.log(`FAILED TO STOPPING FFMPEG (${reason})`); 
-     return; }
+  const now = Date.now();
 
+  // ❌ no process
+  if (!ffmpegProcess) {
+    console.log(`⛔ STOP IGNORED (NO FFMPEG) : ${reason}`);
+    return;
+  }
+
+  // ❌ already stopping
+  if (ffmpegStopping) {
+    console.log(`⏳ STOP IGNORED (ALREADY STOPPING) : ${reason}`);
+    return;
+  }
+
+  // ❌ stop called too soon
+  if (now - lastStopTs < MIN_STOP_INTERVAL_MS) {
+    console.log(`⏱ STOP IGNORED (TOO FAST) : ${reason}`);
+    return;
+  }
+
+  // 🔒 lock
   ffmpegStopping = true;
+  lastStopTs = now;
+
   console.log(`🧹 STOPPING FFMPEG (${reason})`);
 
   try {
@@ -400,6 +425,7 @@ async function stopFFmpeg(reason = "UNKNOWN") {
     console.warn("⚠️ FFmpeg already dead");
   }
 
+  // 🧠 wait for close ONCE
   await new Promise(resolve => {
     ffmpegProcess.once("close", code => {
       console.log(`🧹 FFMPEG CLOSED: ${code}`);
@@ -407,10 +433,42 @@ async function stopFFmpeg(reason = "UNKNOWN") {
     });
   });
 
-  // 🔑 CRITICAL: fully release camera device
-  await new Promise(r => setTimeout(r, 2000));
+  // 🔑 absolutely required for /dev/video0
+  await new Promise(r => setTimeout(r, DEVICE_RELEASE_DELAY_MS));
 
+  // 🧼 cleanup
+ // ffmpegProcess = null;
+ // ffmpegStopping = false;
+
+  console.log("✅ FFMPEG FULLY STOPPED");
 }
+
+// async function stopFFmpeg(reason = "UNKNOWN") {
+
+//     if (!ffmpegProcess || ffmpegStopping) {
+//     console.log(`FAILED TO STOPPING FFMPEG (${reason})`); 
+//      return; }
+
+//   ffmpegStopping = true;
+//   console.log(`🧹 STOPPING FFMPEG (${reason})`);
+
+//   try {
+//     ffmpegProcess.kill("SIGINT");
+//   } catch (e) {
+//     console.warn("⚠️ FFmpeg already dead");
+//   }
+
+//   await new Promise(resolve => {
+//     ffmpegProcess.once("close", code => {
+//       console.log(`🧹 FFMPEG CLOSED: ${code}`);
+//       resolve();
+//     });
+//   });
+
+//   // 🔑 CRITICAL: fully release camera device
+//   await new Promise(r => setTimeout(r, 2000));
+
+// }
 
 function isCameraDeviceError(msg) {
   return (
@@ -1093,12 +1151,12 @@ wss.on("connection", async ws => {
   console.log("LIVE CLIENT COUNT:", liveClients.size);
 
   // ▶ Start live stream only for first client
-  if (liveClients.size === 1 && !RECORDING_STATE.active) {
+  if ( !RECORDING_STATE.active) {
 
     // 🔥 WAIT if ffmpeg is still closing
     if (ffmpegProcess) {
       console.log("⏳ Waiting for FFmpeg to close before starting live");
-      await waitForFFmpegClose();
+       waitForFFmpegClose();
     }
 
     console.log("🎥 STARTING IDLE LIVE STREAM (WS)");
